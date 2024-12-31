@@ -1,10 +1,10 @@
 // src/index.ts
-export function declareWinner(fighter1: Fighter, fighter2: Fighter, firstAttacker: Fighter): string {
+export function declareWinner(fighter1: Fighter, fighter2: Fighter, firstAttacker: string): string {
   let winner: Fighter | null = null
-  let currentAttacker: Fighter = firstAttacker
+  let currentAttacker: Fighter = fighter1.name == firstAttacker ? fighter1 : fighter2
   let currentVictum: Fighter = fighter1 == currentAttacker ? fighter2 : fighter1
   while (!winner){
-    currentAttacker.attack(currentVictum)    
+    currentAttacker.attack(currentVictum)        
     currentAttacker = fighter1 == currentAttacker ? fighter2 : fighter1
     currentVictum = fighter1 == currentAttacker ? fighter2 : fighter1
     winner = getWinner(fighter1, fighter2)
