@@ -1,7 +1,24 @@
 // tests/index.test.ts
-import { Fighter, getWinner } from "../src/";
+import { declareWinner, Fighter, getWinner } from "../src/";
 
 describe('Two fighters, one winner', () => {
+
+  describe('We can run the game to determine a winner', () => {
+    describe('When fighter 1 is the first attacker, has a damagePerAttack of 2 and fighter two has 1 health', () => {
+      const fighter1 = new Fighter("Lew", 5, 2)
+      const fighter2 = new Fighter("Harry", 1, 5)
+      it('Fighter 1 will win the game, as fighter 2 will be dead after one attack', () => {
+        expect(declareWinner(fighter1, fighter2, fighter1)).toBe("Lew");
+      });
+    });
+    describe('When fighter 1 is the first attacker, fighter 2 survices the first attack, has a damagePerAttack of 2 and fighter two has 1 health', () => {
+      const fighter1 = new Fighter("Lew", 1, 2)
+      const fighter2 = new Fighter("Harry", 10, 2)
+      it('Fighter 2 will win the game, as fighter 1 will be dead after one attack', () => {
+        expect(declareWinner(fighter1, fighter2, fighter1)).toBe("Harry");
+      });
+    });
+  });
 
   describe('We can create fighters', () => {
     it('Fighter Lew can be created', () => {
